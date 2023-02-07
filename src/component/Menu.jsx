@@ -1,25 +1,25 @@
-import React, { useState } from 'react'
+import React from 'react';
+import withToggler from '../HOC/withToggler';
 
-const Menu = () => {
-    const [showNav, setShowNav] = useState(true)
-    const toggleNav = () => {
-        setShowNav(!showNav)
-    }
+const Menu = (props) => {
+    const { isActive, toggle } = props;
     return (
         <nav>
-            <button onClick={toggleNav}>
-                {showNav ? 'Hide Nav' : 'Show Nav'}
+            <button onClick={toggle}>
+                {isActive ? "Show " : "Hide "}
+                Menu
+
             </button>
             <ul style={{
-                display: showNav ? 'block' : 'none'
+                display: isActive ? "none" : "block"
             }}>
-                <li><a href="#">Home</a></li>
-                <li><a href="#">Skill</a></li>
-                <li><a href="#">About</a></li>
-                <li><a href="#">Contact</a></li>
+                <li>Home</li>
+                <li>Skill</li>
+                <li>About</li>
+                <li>Contact</li>
             </ul>
         </nav>
     )
 }
 
-export default Menu
+export default withToggler(Menu);
